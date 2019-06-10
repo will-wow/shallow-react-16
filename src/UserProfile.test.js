@@ -17,15 +17,15 @@ describe("UserProfile", () => {
     wrapper = shallow(<UserProfile {...props} />);
   });
 
-  it('loads the user', () => {
-    expect(props.loadUser).toHaveBeenCalledWith('user-1');
+  it("loads the user", () => {
+    expect(props.loadUser).toHaveBeenCalledWith("user-1");
   });
 
-  it('watches for id changes', () => {
-    expect(React.useEffect.mock.calls[0][1]).toEqual(['user-1']);
+  it("watches for id changes", () => {
+    expect(React.useEffect.mock.calls[0][1]).toEqual(["user-1"]);
   });
 
-  it('renders the user', () => {
-    expect(wrapper.text()).toContain(['alice']);
+  it("renders the user", () => {
+    expect(wrapper.text()).toContain(["alice"]);
   });
 });

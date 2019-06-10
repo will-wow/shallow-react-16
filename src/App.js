@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
+
 import UserProfile from "./UserProfile";
+import UserContext from "./UserContext";
+import UserGreeting from "./UserGreeting";
+import UserGreeter from "./UserGreeter";
 
 const USERS = {
   a: { name: "alice" },
@@ -27,6 +31,13 @@ function App() {
         </select>
       </div>
       <UserProfile userId={userId} user={user} loadUser={handleLoad} />
+
+      {user && (
+        <UserContext.Provider value={user}>
+          <UserGreeting greeting="hello" />
+          <UserGreeter greeting="hey" />
+        </UserContext.Provider>
+      )}
     </div>
   );
 }
