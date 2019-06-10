@@ -1,24 +1,32 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useState } from "react";
 import "./App.css";
+import UserProfile from "./UserProfile";
+
+const USERS = {
+  a: { name: "alice" },
+  b: { name: "bob" }
+};
 
 function App() {
+  const [userId, setUserId] = useState("");
+  const [user, setUser] = useState(null);
+
+  const handleLoad = userId => {
+    console.log("load", userId);
+    setUser(USERS[userId] || null);
+  };
+  const handleIdSelect = event => setUserId(event.target.value);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <select value={userId} onChange={handleIdSelect}>
+          <option value="">Pick a User</option>
+          <option value="a">Alice</option>
+          <option value="b">Bob</option>
+        </select>
+      </div>
+      <UserProfile userId={userId} user={user} loadUser={handleLoad} />
     </div>
   );
 }
