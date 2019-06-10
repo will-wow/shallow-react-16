@@ -7,11 +7,16 @@
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
   },
+  "devDependencies": {
+    "prettier": "^1.18.2",
+    "enzyme": "^3.10.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write **/*.{js,json}"
   },
   "eslintConfig": {
     "extends": "react-app"
