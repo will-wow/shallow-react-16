@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 
 import UserProfile from "./UserProfile";
-import UserContext from "./UserContext";
-import UserGreeting from "./UserGreeting";
-import UserGreeter from "./UserGreeter";
+import UserParent from "./UserParent";
 
 const USERS = {
   a: { name: "alice" },
@@ -32,12 +30,7 @@ function App() {
       </div>
       <UserProfile userId={userId} user={user} loadUser={handleLoad} />
 
-      {user && (
-        <UserContext.Provider value={user}>
-          <UserGreeting greeting="hello" />
-          <UserGreeter greeting="hey" />
-        </UserContext.Provider>
-      )}
+      {user && <UserParent user={user} />}
     </div>
   );
 }
