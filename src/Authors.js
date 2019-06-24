@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Author from "./Author";
+import Post from "./Post";
 
 const Authors = ({ fetchAuthors, fetchPosts }) => {
   const [authors, setAuthors] = useState([]);
@@ -24,23 +26,20 @@ const Authors = ({ fetchAuthors, fetchPosts }) => {
       <div className="author-options">
         <h3>Select an Author:</h3>
         {authors.map(author => (
-          <div id={author.id} key={author.id} className="author">
-            <button onClick={() => setActiveAuthor(author)}>
-              {author.name}
-            </button>
-          </div>
+          <Author
+            key={author.id}
+            author={author}
+            activeAuthor={activeAuthor}
+            onSelect={setActiveAuthor}
+          />
         ))}
-        <button onClick={() => setActiveAuthor(null)}>None</button>
       </div>
 
       {activeAuthor && (
         <div className="posts">
           <h3>Posts by {activeAuthor.name}</h3>
           {posts.map(post => (
-            <div key={post.id}>
-              <h4>{post.title}</h4>
-              <p>{post.body}</p>
-            </div>
+            <Post key={post.id} post={post} />
           ))}
         </div>
       )}

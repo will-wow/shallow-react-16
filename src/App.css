@@ -9,8 +9,16 @@
   width: 100%;
 }
 
-.author-options button {
+.author button {
   width: 100%;
+}
+
+.author button {
+  background: #d3d3d3;
+}
+
+.author--active button {
+  background: #c0c0c0;
 }
 
 .posts {

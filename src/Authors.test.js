@@ -11,7 +11,9 @@ describe("UserProfile", () => {
     useEffect.mockImplementationOnce(f => f());
   };
 
-  const authors = [{ id: 1, name: "alice" }, { id: 2, name: "bob" }];
+  const alice = { id: 1, name: "alice" };
+  const bob = { id: 2, name: "bob" };
+  const authors = [alice, bob];
   const posts = [{ id: 1, title: "a post", body: "the body" }];
 
   beforeEach(() => {
@@ -33,41 +35,46 @@ describe("UserProfile", () => {
       expect(props.fetchAuthors).toHaveBeenCalled();
     });
 
-    it("does not load posts ", () => {
+    it("does not load posts", () => {
       expect(props.fetchPosts).not.toHaveBeenCalled();
     });
 
     it("renders the authors", () => {
-      expect(
-        wrapper
-          .find("button")
-          .first()
-          .text()
-      ).toBe("alice");
+      expect(wrapper.find("Author")).toHaveLength(2);
+
+      const firstAuthor = wrapper.find("Author").first();
+
+      expect(firstAuthor.prop("author")).toEqual(alice);
+      expect(firstAuthor.prop("activeAuthor")).toEqual(null);
     });
   });
 
-  describe("given a click on a user", () => {
+  describe("given selected author", () => {
     beforeEach(() => {
       mockUseEffect();
       mockUseEffect();
 
       wrapper
-        .find("button")
+        .find("Author")
         .first()
-        .simulate("click");
+        .simulate("select", alice);
+    });
+
+    it("sets the active author", () => {
+      expect(wrapper.find("Author")).toHaveLength(2);
+
+      const firstAuthor = wrapper.find("Author").first();
+
+      expect(firstAuthor.prop("author")).toEqual(alice);
+      expect(firstAuthor.prop("activeAuthor")).toEqual(alice);
     });
 
     it("loads the right posts", () => {
-      expect(props.fetchPosts).toHaveBeenCalledWith(1);
+      expect(props.fetchPosts).toHaveBeenCalledWith(alice.id);
     });
 
     it("renders the posts", () => {
-      expect(wrapper.find(".posts").text()).toContain("the body");
+      expect(wrapper.find("Post").prop("post")).toEqual(posts[0]);
     });
-  });
-
-  it("renders the user", () => {
-    expect(wrapper.text()).toContain(["alice"]);
   });
 });
