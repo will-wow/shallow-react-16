@@ -1,34 +1,34 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import UserGreeting from "./UserGreeting";
 import UserContext from "./UserContext";
 
 describe("UserGreeting", () => {
-  it.skip("IS GOING TO FAIL, DON'T DO THIS", () => {
-    const wrapper = shallow(
-      <UserContext.Provider value={{ name: "alice" }}>
+  const user = { name: "alice" };
+  it("mounts a greeting", () => {
+    const wrapper = mount(
+      <UserContext.Provider value={user}>
         <UserGreeting greeting="hello" />
       </UserContext.Provider>
     );
 
-    console.log(wrapper.debug());
-    console.log(wrapper.dive().debug());
-
-    expect(
-      wrapper
-        .dive()
-        .find(".greeting")
-        .text()
-    ).toBe("hello, alice");
+    expect(wrapper.find(".greeting").text()).toContain("hello, alice");
   });
 
-  it("renders data", () => {
-    const wrapper = shallow(<UserGreeting greeting="hello" />);
-    expect(
-      wrapper
-        .renderProp("children")({ name: "alice" })
-        .find(".greeting")
-        .text()
-    ).toBe("hello, alice");
+  it("shallow renders a greeting with a provider", () => {
+    const wrapper = shallow(
+      <UserContext.Provider value={user}>
+        <UserGreeting greeting="hello" />
+      </UserContext.Provider>
+    );
+
+    const content = wrapper
+      .dive()
+      .dive()
+      .dive();
+
+    expect(content.find(".greeting").text()).toContain("hello, alice");
+
+    expect(content.find("Logger").prop("children")).toEqual(user);
   });
 });

@@ -3,6 +3,7 @@ import UserContext from "./UserContext";
 
 const UserGreeter = ({ greeting }) => {
   const [userHasClicked, setUserHasClicked] = useState(false);
+  console.log({ userHasClicked });
 
   return (
     <UserContext.Consumer>

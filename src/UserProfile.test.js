@@ -22,7 +22,7 @@ describe("UserProfile", () => {
   });
 
   it("watches for id changes", () => {
-    expect(React.useEffect.mock.calls[0][1]).toEqual(["user-1"]);
+    expect(React.useEffect.mock.calls[0][1]).toEqual(expect.arrayContaining(["user-1"]));
   });
 
   it("renders the user", () => {
