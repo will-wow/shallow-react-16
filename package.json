@@ -10,14 +10,16 @@
   "devDependencies": {
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "surge": "^0.21.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write **/*.{js,json}"
+    "format": "prettier --write **/*.{js,json}",
+    "deploy": "surge build --domain https://react-authors-and-posts.surge.sh"
   },
   "eslintConfig": {
     "extends": "react-app"

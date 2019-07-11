@@ -2,11 +2,9 @@
 
 Sample code for a blog post about testing Contexts and Hooks with `enzyme.shallow`.
 
-## Example Tests
+[https://react-authors-and-posts.surge.sh](https://react-authors-and-posts.surge.sh)
 
-- [Hook Test](/src/UserProfile.test.js)
-- [Simple Context Test](/src/UserGreeting.test.js)
-- [Stateful Context Test](/src/UserGreeter.test.js)
+- [Example Test](/src/Authors.test.js)
 
 ## Available Scripts
 
@@ -28,3 +26,11 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ### `npm format`
 
 Run prettier and auto-format all the code.
+
+### `npm build`
+
+Build a prod version to the build directory.
+
+### `npm deploy`
+
+Deploy the build directory to surge.
