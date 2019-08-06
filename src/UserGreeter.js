@@ -11,11 +11,15 @@ const UserGreeter = ({ greeting }) => {
         <div>
           <button onClick={() => setUserHasClicked(true)}>Click Me</button>
 
-          {userHasClicked && (
-            <div className="message">
-              {greeting}, {user.name}, you clicked the button
-            </div>
-          )}
+          <UserContext.Consumer>
+            {user =>
+              userHasClicked && (
+                <div className="message">
+                  {greeting}, {user.name}, you clicked the button
+                </div>
+              )
+            }
+          </UserContext.Consumer>
         </div>
       )}
     </UserContext.Consumer>
